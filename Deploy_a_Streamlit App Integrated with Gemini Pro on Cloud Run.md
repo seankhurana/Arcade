@@ -36,6 +36,29 @@ streamlit run app.py \
 ```
 
 That's it! Your Streamlit app should now be deployed and accessible. Feel free to customize the app and experiment with different features.
+Here's Task 2 formatted separately:
+
+```markdown
+## Task 2: Create Artifact Repository and Submit Docker Image
+
+### Command to Create Artifact Repository:
+
+```bash
+AR_REPO='gemini-repo'
+SERVICE_NAME='gemini-streamlit-app' 
+gcloud artifacts repositories create "$AR_REPO" --location="$GCP_REGION" --repository-format=Docker
+```
+
+### Command to Submit Docker Image to Artifact Repository:
+
+```bash
+gcloud builds submit --tag "$GCP_REGION-docker.pkg.dev/$GCP_PROJECT/$AR_REPO/$SERVICE_NAME"
+```
+
+Replace `YOUR Project ID` and `YOUR Region` with your actual project ID and preferred region. This will create an artifact repository and submit the Docker image to the repository.
+
+Let me know if you have any questions or need further assistance.
+```
 
 Let me know if you have any questions or need further assistance. Happy coding! 🚀
 
