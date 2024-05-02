@@ -55,9 +55,17 @@ gcloud artifacts repositories create "$AR_REPO" --location="$GCP_REGION" --repos
 gcloud builds submit --tag "$GCP_REGION-docker.pkg.dev/$GCP_PROJECT/$AR_REPO/$SERVICE_NAME"
 ```
 
-Replace `YOUR Project ID` and `YOUR Region` with your actual project ID and preferred region. This will create an artifact repository and submit the Docker image to the repository.
+Final Step:
 
-Let me know if you have any questions or need further assistance.
+```bash
+gcloud run deploy "$SERVICE_NAME" \
+  --port=8080 \
+  --image="$GCP_REGION-docker.pkg.dev/$GCP_PROJECT/$AR_REPO/$SERVICE_NAME" \
+  --allow-unauthenticated \
+  --region=$GCP_REGION \
+  --platform=managed  \
+  --project=$GCP_PROJECT \
+  --set-env-vars=GCP_PROJECT=$GCP_PROJECT,GCP_REGION=$GCP_REGION
 ```
 
 Let me know if you have any questions or need further assistance. Happy coding! 🚀
